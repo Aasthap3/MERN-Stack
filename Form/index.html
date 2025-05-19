@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <h3 class="heading">Login</h3>
+            <form class="form">
+                <table>
+                    <tr>
+                        <td>
+                            <img src="images/mail.png" alt="Email" class="icon">
+                        </td>
+                        <td>
+                            <input type="email" placeholder="Enter your email" id="email1" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="images/lock.png" alt="Email" class="icon">
+                        </td>
+                        <td>
+                            <input type="password" placeholder="Confirm a password" id="pass1" required>
+                            <img src="images/view.png" alt="view" class="icon">
+                        </td>
+                    </tr>
+                    <tr>
+                       <td>
+                            <input type="checkbox">
+                       </td> 
+                       <td>
+                            <label>Remember me</label>
+                            <a href="#">Forgot Password?</a>
+                       </td>
+                    </tr>
+                </table>
+                <button id="login-btn" class="btn">Login Now</button>
+            </form>
+            <p class="bottom-text">Don't have an account? <a href="#">Signup now</a></p>
+        </div>
+        <div class="reg-container">
+            <h3 class="heading">Registration</h3>
+            <form class="form">
+                <table>
+                    <tr>
+                        <td>
+                            <img src="images/user.png" alt="User" class="icon">
+                        </td>
+                        <td>
+                            <input type="text" placeholder="Enter your name" id="name" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="images/mail.png" alt="Email" class="icon">
+                        </td>
+                        <td>
+                            <input type="email" placeholder="Enter your email" id="email2" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="images/lock.png" alt="password" class="icon">
+                        </td>
+                        <td>
+                            <input type="password" placeholder="Create a password" id="pass2" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="images/lock.png" alt="Email" class="icon">
+                        </td>
+                        <td>
+                            <input type="password" placeholder="Confirm a password" id="conpass" required>
+                            <img src="images/view.png" alt="view" class="icon">
+                        </td>
+                    </tr>
+                    <tr>
+                       <td>
+                            <input type="checkbox" required>
+                       </td> 
+                       <td>
+                            <label>I accept all terms and conditions</label>
+                       </td>
+                    </tr>
+                </table>
+                <button id="reg-btn" class="btn">Register Now</button>
+            </form>
+            <p class="bottom-text">Already have an account? <a href="#">Login now</a></p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
