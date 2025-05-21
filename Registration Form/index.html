@@ -3,11 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="main-container">
+        <h1 class="heading"> Registration Form</h1>
+        <form>
+            <div class="info-container">
+                <h2 class="title">Personal Information</h2>
+                <div class="input-container">
+                    <label>Full Name: </label>
+                    <input type="text" placeholder="Enter your name" name="name" id="name">
+                    <span class="error" id="nameError"></span>
+                </div>
+                <div class="input-container">
+                    <label>Email Address: </label>
+                    <input type="email" placeholder="Enter your email" name="email" id="email">
+                    <span class="error" id="emailError"></span>
+                </div>
+                <div class="input-container">
+                    <label>Mobile Number: </label>
+                    <input type="tel" placeholder="Enter your mobile number" name="phone" id="phone">
+                    <span class="error" id="phoneError"></span>
+                </div>
+                <div class="input-container">
+                    <label>Date of Birth: </label>
+                    <input type="date" name="dob" id="dob">
+                    <span class="error" id="dobError"></span>
+                </div>
+            </div>
 
+            <div class="info-container">
+                <h2 class="title">Academic Details</h2>
+                <div class="input-container">
+                    <label>Last Completed Qualification: </label>
+                    <select name="qual" id="qual">
+                        <option value="">Select Qualification</option>
+                        <option value="10th">10th</option>
+                        <option value="12th">12th</option>
+                        <option value="grad">Graduate</option>
+                        <option value="postgrad">Post Graduate</option>
+                    </select>
+                    <span class="error" id="qualError"></span>
+                </div>
+                <div class="input-container">
+                    <label>Grade in Last Qualification: </label>
+                    <input type="number" placeholder="Enter your grade" name="grade" id="grade">
+                    <span class="error" id="gradeError"></span>
+                </div>
+            </div>
+
+            <div class="info-container">
+                <h2 class="title">Course Details</h2>
+                <div class="input-container">
+                    <label>Preferred Course: </label>
+                    <select name="course" id="course">
+                        <option value="">Select Preferred Course</option>
+                        <option value="IIT-JEE">IIT-JEE</option>
+                        <option value="NEET">NEET</option>
+                        <option value="banking">Banking Exams</option>
+                        <option value="UPSC">UPSC</option>
+                    </select>
+                    <span class="error" id="courseError"></span>
+                </div>
+                <div class="input-container">
+                    <label>Batch Timing Preference: </label>
+                    <select name="time" id="time">
+                        <option value="">Select Preferred Batch Time</option>
+                        <option value="morn">Morning</option>
+                        <option value="noon">Afternoon</option>
+                        <option value="eve">Evening</option>
+                        <option value="weekend">Weekend</option>
+                    </select>
+                    <span class="error" id="timeError"></span>
+                </div>
+            </div>
+
+            <div class="info-container">
+                <h2 class="title">Address</h2>
+                <div class="input-container">
+                    <label>Address: </label>
+                    <textarea name="add" id="add" placeholder="Address"></textarea>
+                    <span class="error" id="addError"></span>
+                </div>
+                <div class="input-container">
+                    <label>City: </label>
+                    <input type="text" placeholder="City" name="city" id="city">
+                    <span class="error" id="cityError"></span>
+                </div>
+                <div class="input-container">
+                    <label>Pincode: </label>
+                    <input type="number" placeholder="Pincode" name="pin" id="pin">
+                    <span class="error" id="pinError"></span>
+                </div>
+            </div>
+
+            <div class="info-container">
+                <h2 class="title">Guardian Details</h2>
+                <div class="input-container">
+                    <label>Guardian's Full Name: </label>
+                    <input type="text" placeholder="Enter guardian's name" name="gName" id="gName">
+                    <span class="error" id="gNameError"></span>
+                </div>
+                <div class="input-container">
+                    <label>Guardian's Contact Number: </label>
+                    <input type="tel" placeholder="Enter guardian's contact number" name="gPhone" id="gPhone">
+                    <span class="error" id="gPhoneError"></span>
+                </div>
+            </div>
+
+            <div class="info-container">
+                <h2 class="title">Additional Information</h2>
+                <div class="input-container">
+                    <label>How did you hear about us?</label>
+                    <select name="hear" id="hear">
+                        <option value="">Select Option</option>
+                        <option value="friends">Friends</option>
+                        <option value="ad">Online Ad</option>
+                        <option value="news">Newspaper</option>
+                        <option value="social">Social Media</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <span class="error" id="infoError"></span>
+                </div>
+                <div class="input-container">
+                    <label>Special Requirements: </label>
+                    <textarea name="req" id="req" placeholder="Add Special Requirements"></textarea>
+                    <span class="error" id="reqError"></span>
+                </div>
+            </div>
+            <div class="center">
+                <button id="btn">SUBMIT</button>
+            </div>
+        </form>    
     </div>
+
+    <script src="app.js"></script>
 </body>
 </html>

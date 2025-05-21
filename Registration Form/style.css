@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main-container{
+    margin: 15vh;
+}
+
+.heading{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-decoration: underline;
+    text-align: center;
+}
+
+.info-container{
+    display: grid;
+    margin: 2vh;
+}
+
+.title{
+    text-align: center;
+    background-color: rgb(221, 219, 219);
+    padding: 1vh 0;
+    margin: 1vh 0 2vh 0;
+}
+
+.input-container{
+    margin: 1vh;
+    display: grid;
+    grid-template-columns: 35vh 50vh auto;
+}
+
+input{
+    border: 1px solid grey;
+    padding: 1vh;
+    border-radius: 0.5rem;
+}
+
+label{
+    padding: 1vh;
+}
+
+select{
+    border: 1px solid gray;
+    border-radius: 0.5rem;
+}
+
+textarea{
+    border-radius: 0.5rem;
+    padding: 1vh;
+}
+
+.error{
+    color: red;
+    padding: 1vh;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+#btn{
+    padding: 2vh;
+    border-radius: 0.5rem;
+    background-color: rgb(221, 219, 219);
+    border: 1px solid gray;
+}
+
+@media only screen and (max-width: 1140px) {
+    .input-container{
+        grid-template-columns: 18vh 30vh auto;
+    }
+}
