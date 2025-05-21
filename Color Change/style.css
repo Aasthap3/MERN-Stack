@@ -1,0 +1,54 @@
+.container{
+    display: flex;
+    margin: 20vh 4vh 4vh 4vh;
+
+}
+
+.content{
+    width: 50%;
+    padding: 2vh;
+    border: 1px solid gray;
+}
+
+.btns{
+    padding: 4vh;
+    align-content: center;
+}
+
+.buttons{
+    margin: 2vh 0;
+}
+
+.info{
+    margin: 0 1vh
+}
+
+.colors{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.color{
+    width: 5vh;
+    height: 5vh;
+    border: 1px solid black;
+    border-radius: 50%;
+    margin: 0 2vh;
+}
+
+#pink{
+    background-color: pink;
+}
+
+#blue{
+    background-color: rgb(151, 233, 247);
+}
+
+#green{
+    background-color: rgb(151, 239, 151);
+}
+
+#yellow{
+    background-color: rgb(247, 247, 145);
+}

@@ -1,0 +1,42 @@
+#bulb{
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 10vh;
+    margin: 5vh;
+    width: 10vh;
+    height: 10vh;
+    text-align: center;
+    align-content: center;
+}
+
+.bg{
+    background-color: rgb(247, 247, 144);
+}
+
+.btn{
+    padding: 2vmin;
+    border-radius: 0.5rem;
+    border: 1px solid grey;
+}
+
+#red-btn{
+    background-color: red;
+}
+
+#green-btn{
+    background-color: green;
+}
+
+#blue-btn{
+    background-color: rgb(67, 67, 247);
+    color: #fff;
+}
+
+#on-btn{
+    background-color: rgb(247, 247, 144);
+}
+
+#on-off-btn{
+    background-color: rgb(67, 67, 66);
+    color: #fff;
+}
