@@ -6,6 +6,34 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div class="container">
+        <input type="text" name="city" id="city" placeholder="Enter city names">
+        <button type="button" onclick="getLonLat()">Get Weather</button>
+    </div>
+    <div class="weather-container" style="display: none;">
+        <div id="container">
+            <div class="main-container">
+                <h3 id="cityName"></h3>
+                <h5 id="main"></h5>
+                <span id="temp"></span>
+            </div>
+            <div class="details-container">
+                <h6>Detailed Information</h6>
+                <div id="items">
+                    <span>Feels Like:</span><span id="tempFeelsLike"></span>
+                </div>
+                <div id="items">
+                    <span>Description:</span><span id="description"></span>
+                </div>
+                <div id="items">
+                    <span>Wind Speed:</span><span id="windSpeed"></span>
+                </div>
+                <div id="items">
+                    <span>Humidity:</span><span id="humidity"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
