@@ -16,7 +16,8 @@ async function convert() {
 
   const rate = data[fromCurr];
   const newAmt = amt * rate[toCurr];
-  document.getElementById("converted").innerText = newAmt;
+  const txt = "1 " + fromCurr + " = " + newAmt + toCurr;
+  document.getElementById("converted").innerText = txt;
 
 }
 

@@ -17,7 +17,7 @@ async function getLonLat() {
       document.getElementById("city").value = "";
       return;
     }else{
-        await getWeather(lon, lat);
+        await getWeather(city_name,lon, lat);
     }
   } catch (error) {
     console.log(error);
@@ -26,5 +26,13 @@ async function getLonLat() {
 }
 
 async function getWeather(lon, lat) {
-    
+    const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_key}`;
+
+    const response = await fetch(URL);
+    const data = await response.json();
+
+    document.getElementById("cityname").innerText = city_name;
+    document.getElementById("main").innerText = data[0].main;
+    document.getElementById("icon").innerText = data[0].icon;
+
 }
