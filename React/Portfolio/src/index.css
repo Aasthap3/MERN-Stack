@@ -1,0 +1,17 @@
+#main{
+  display: flex;
+}
+
+#sidebar{
+  width:20vw;
+  height: 100vh;
+}
+
+#content{
+  width: 80vw;
+  height: 90vh;
+}
+
+#profile{
+  object-position: top left;
+}
