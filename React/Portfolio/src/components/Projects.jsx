@@ -3,7 +3,7 @@ import React from 'react'
 const Projects = () => {
   return (
     <>
-    <div id="project" className="m-4 p-5 rounded bg-light">
+    <div id="project" className="m-4 p-5 rounded bg-light h-75 d-flex flex-column justify-content-center">
         <h2 className="text-bg-dark p-2 rounded">Projects</h2>
         <ul className="list-unstyled d-grid gap-5">
           <li className="list-item"> 

@@ -1,5 +1,5 @@
 import React from "react";
-import photo from "../assets/Photo.jpg";
+import photo from "../assets/profile.jpg";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -16,27 +16,39 @@ const Sidebar = () => {
             height={"200px"}
           />
         </div>
-        <div className="container">
-            <ul className=" list-unstyled">
-                <li>
-                    <Link to="/"><i class="bi bi-house"></i>Home</Link>
-                </li>
-                <li>
-                    <Link to="/about"><i class="bi bi-person"></i>About</Link>
-                </li>
-                <li>
-                    <Link to="/education"><i class="bi bi-mortarboard"></i>Education</Link>
-                </li>
-                <li>
-                    <Link to="/certification"><i class="bi bi-patch-check"></i>Certifications</Link>
-                </li>
-                <li>
-                    <Link to="/projects"><i class="bi bi-person-gear"></i>Home</Link>
-                </li>
-                <li>
-                    <Link to="/contact"><i class="bi bi-telephone"></i>Home</Link>
-                </li>
-            </ul>
+        <div className="container p-5">
+          <ul className=" list-unstyled d-grid gap-2 fs-5">
+            <li>
+              <Link to="/" className="text-light text-decoration-none">
+                <i className="bi bi-house"></i> Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" className="text-light text-decoration-none">
+                <i className="bi bi-person"></i> About
+              </Link>
+            </li>
+            <li>
+              <Link to="/education" className="text-light text-decoration-none">
+                <i className="bi bi-mortarboard"></i> Education
+              </Link>
+            </li>
+            <li>
+              <Link to="/certifications" className="text-light text-decoration-none">
+                <i className="bi bi-patch-check"></i> Certifications
+              </Link>
+            </li>
+            <li>
+              <Link to="/projects" className="text-light text-decoration-none">
+                <i className="bi bi-person-gear"></i> Projects
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="text-light text-decoration-none">
+                <i className="bi bi-telephone"></i> Contact
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </>

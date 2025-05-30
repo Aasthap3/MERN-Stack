@@ -3,7 +3,7 @@ import React from 'react'
 const About = () => {
   return (
     <>
-    <div id="about" className="m-4 p-5 rounded bg-light">
+    <div id="about" className="m-4 p-5 rounded bg-light h-75 d-flex flex-column justify-content-center">
       <h2 className='text-bg-dark p-2 rounded'>About Me</h2>
       <p>
         Passionate Web Developer skilled in HTML, CSS, JavaScript, and React.js

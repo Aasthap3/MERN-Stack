@@ -4,7 +4,7 @@
 
 #sidebar{
   width:20vw;
-  height: 100vh;
+  height: 90vh;
 }
 
 #content{
@@ -13,5 +13,5 @@
 }
 
 #profile{
-  object-position: top left;
+  object-position: top;
 }

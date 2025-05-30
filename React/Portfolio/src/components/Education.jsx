@@ -1,9 +1,10 @@
 import React from 'react'
 
 const Education = () => {
+
   return (
     <>
-    <div id='edu' className="m-4 p-5 rounded bg-light">
+    <div id='edu' className="m-4 p-5 rounded bg-light h-75 d-flex flex-column justify-content-center">
       <h2 className='text-bg-dark p-2 rounded'>Education</h2>
         <ul>
             <li><strong>Masters of Computer Applications</strong> <br /> <i> Maulana Azad National Institute of Technology, Bhopal </i>
