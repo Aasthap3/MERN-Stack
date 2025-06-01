@@ -3,38 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>How's Weather?</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+
 </head>
-<body>
-    <div class="container">
-        <input type="text" name="city" id="city" placeholder="Enter city names">
-        <button type="button" onclick="getLonLat()">Get Weather</button>
+<body class="bg-light">   
+    <div class="container mt-5 d-flex justify-content-center w-50 mx-auto">
+        <input type="text" name="city" id="city" placeholder="Enter city name" class="form-control border border-dark w-50">
+        <button type="button" class="btn btn-dark" onclick="getWeather()">Get Weather</button>
     </div>
-    <div class="weather-container" style="display: none;">
-        <div id="container">
-            <div class="main-container">
+    <div id="weather-container" style="display: none;">
+        <div id="container" class="d-grid justify-content-center mt-5">
+            <div class="main-container text-center">
                 <h3 id="cityName"></h3>
-                <h5 id="main"></h5>
-                <span id="icon"></span>
-                <span id="temp"></span>
+                <p id="main"></p>
+                <img id="icon" src="#" alt="weatherIcon" height="100vh" width="100vh"></img>
+                <p id="temp"></p>
             </div>
             <div class="details-container">
-                <h6>Detailed Information</h6>
-                <div id="items">
-                    <span>Feels Like:</span><span id="tempFeelsLike"></span>
+                <h4>Detailed Information</h4>
+                <div class="items">
+                    <strong>Feels Like: </strong><span id="tempFeelsLike"></span>
                 </div>
-                <div id="items">
-                    <span>Description:</span><span id="description"></span>
+                <div class="items">
+                    <strong>Description: </strong><span id="description"></span>
                 </div>
-                <div id="items">
-                    <span>Wind Speed:</span><span id="windSpeed"></span>
+                <div class="items">
+                    <strong>Wind Speed: </strong><span id="windSpeed"></span>
                 </div>
-                <div id="items">
-                    <span>Humidity:</span><span id="humidity"></span>
+                <div class="items">
+                    <strong>Humidity: </strong><span id="humidity"></span>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 </html>
