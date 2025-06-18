@@ -4,6 +4,7 @@ import Sectors from "../components/Sectors";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UploadCV from "../components/UploadCV";
 import JobList from "../components/JobList";
+import HowApply from "../components/HowApply";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Sectors/>
       <UploadCV/>
       <JobList/>
+      <HowApply/>
     </>
   );
 };
