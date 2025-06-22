@@ -28,15 +28,27 @@ app.get("/", (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  const message = err.message || "Internal Server Error";
-  const StatusCode = err.statusCode || 500;
+  const statusCode = err.statusCode || 500;
 
-  res.status(StatusCode).json({ message });
+  res.status(statusCode).json({
+    message: err.message || "Internal Server Error",
+  });
 });
+
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => {
-  console.log(`Server is running on ${port}`);
-  connectDB();
-});
+const startServer = async () => {
+  try {
+    await connectDB();
+    app.listen(port, () => {
+      console.log(`Server is running on ${port}`);
+    });
+  } catch (error) {
+    console.error("Failed to connect to DB:", error);
+    process.exit(1);
+  }
+};
+
+startServer();
+

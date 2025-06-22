@@ -4,30 +4,43 @@ import { genAuthToken } from "../utils/auth.js";
 
 export const userRegister = async (req, res, next) => {
   try {
-    const { firstName, lastName, email, phone, address, password } = req.body;
+    const { firstName, lastName, email, phone, role, address, password } =
+      req.body;
 
-    if (!firstName || !lastName || !email || !phone || !address || !password) {
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !phone ||
+      !role ||
+      !address ||
+      !password
+    ) {
       const error = new Error("All fields Required");
-      err.StatusCode = 400;
+      error.statusCode = 400;
       return next(error);
     }
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       const error = new Error("Email already exists");
-      err.StatusCode = 409;
+      error.statusCode = 409;
       return next(error);
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+
+    const photoLink = `https://placehold.co/600x400?text=${firstName.charAt(0)}${lastName.charAt(0)}`;
 
     const newUser = await User.create({
       firstName,
       lastName,
       email,
       phone,
+      role,
       address,
       password: hashedPassword,
+      photo: photoLink,
     });
     console.log(newUser);
     res.status(200).json({ message: "User Registered Succesfully" });
@@ -36,33 +49,43 @@ export const userRegister = async (req, res, next) => {
   }
 };
 
-export const userLogin = async (req, res) => {
+export const userLogin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
     if (!email || !password) {
       const error = new Error("All fields Required");
-      err.StatusCode = 400;
+      error.statusCode = 400;
       return next(error);
     }
 
     const user = await User.findOne({ email });
     if (!user) {
       const error = new Error("User not found");
-      err.StatusCode = 404;
+      error.statusCode = 404;
       return next(error);
     }
 
     const isVerified = await bcrypt.compare(password, user.password);
     if (!isVerified) {
       const error = new Error("Invalid Credentials");
-      err.StatusCode = 401;
+      error.statusCode = 401;
       return next(error);
     }
 
     genAuthToken(user._id, res);
 
-    res.status(200).json({ message: "User Logged In Succesfully" });
+    res.status(200).json({ message: "User Logged In Succesfully",
+      data: {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+        photo: user.photo,
+        address: user.address,
+      }
+     });
   } catch (error) {
     next(error);
   }

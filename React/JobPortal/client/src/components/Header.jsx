@@ -8,7 +8,7 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <>
-      <nav className="flex justify-between fixed bg-white py-2 items-center w-[100%] px-20">
+      <nav className="sticky flex justify-between bg-white py-2 items-center w-[100%] px-20">
         <div>
           <img src={logo} alt="logo" className="h-14" />
         </div>

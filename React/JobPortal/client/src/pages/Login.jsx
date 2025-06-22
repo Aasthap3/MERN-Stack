@@ -32,13 +32,17 @@ const Login = () => {
     try {
       const res = await axios.post("/auth/login", loginData);
       toast.success(res.data.message);
-      navigate("/userDashboard");
+      sessionStorage.setItem("user", JSON.stringify(res.data.data));
+      res.data.data.role === "Admin"
+        ? navigate("/adminDashboard")
+        : res.data.data.role === "User"
+        ? navigate("/userDashboard")
+        : navigate("/recruiterDashboard");
     } catch (error) {
-      toast.error(
-        `Error ${error?.response?.status || 503} : ${
-          error?.response?.data?.message || "Service Unavailable"
-        }`
-      );
+      const status = error?.response?.status || 503;
+      const message = error?.response?.data?.message || "Service Unavailable";
+
+      toast.error(`Error ${status} : ${message}`);
     } finally {
       setLoading(false);
     }

@@ -5,6 +5,11 @@ import toast from "react-hot-toast";
 import Loading from "../assets/infinite-spinner.svg";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 
+const role = [
+  { value: "User", display: "Searching for Job" },
+  { value: "Recruiter", display: "Recruiter" },
+];
+
 const Register = () => {
   const navigate = useNavigate();
 
@@ -22,6 +27,7 @@ const Register = () => {
     email: "",
     phone: "",
     address: "",
+    role: "",
     password: "",
     confirmPassword: "",
   });
@@ -55,6 +61,11 @@ const Register = () => {
       registerData.phone.length !== 10
     ) {
       errors.phone = "Please enter a valid phone number(10 digits)";
+      isValid = false;
+    }
+
+    if (!registerData.role) {
+      errors.role = "Please select a role";
       isValid = false;
     }
 
@@ -118,6 +129,7 @@ const Register = () => {
       lastName: "",
       email: "",
       phone: "",
+      role: "",
       address: "",
       password: "",
       confirmPassword: "",
@@ -128,7 +140,7 @@ const Register = () => {
     <>
       <div className="flex items-center justify-center min-h-screen">
         <form
-          className="bg-white p-10 mt-25 mb-15 rounded-2xl shadow-2xl w-full max-w-lg border border-gray-200"
+          className="bg-white p-10 mt-10 mb-15 rounded-2xl shadow-2xl w-full max-w-lg border border-gray-200"
           onSubmit={handleSubmit}
         >
           <h2 className="text-3xl font-extrabold mb-8 text-center text-pink-500 tracking-wide">
@@ -174,7 +186,9 @@ const Register = () => {
               </div>
             </div>
             {error.name && (
-              <div className="text-red-500 text-sm mb-2 mt-[-2vh]">{error.name}</div>
+              <div className="text-red-500 text-sm mb-2 mt-[-2vh]">
+                {error.name}
+              </div>
             )}
           </div>
           <div className="grid">
@@ -197,7 +211,9 @@ const Register = () => {
               />
             </div>
             {error.email && (
-              <div className="text-red-500 text-sm mb-2 mt-[-2vh]">{error.email}</div>
+              <div className="text-red-500 text-sm mb-2 mt-[-2vh]">
+                {error.email}
+              </div>
             )}
           </div>
           <div className="grid">
@@ -220,7 +236,40 @@ const Register = () => {
               />
             </div>
             {error.phone && (
-              <div className="text-red-500 text-sm mb-2 mt-[-2vh]">{error.phone}</div>
+              <div className="text-red-500 text-sm mb-2 mt-[-2vh]">
+                {error.phone}
+              </div>
+            )}
+          </div>
+          <div className="grid">
+            <div className="mb-3">
+              <label
+                className="block text-gray-700 mb-2 font-medium"
+                htmlFor="role"
+              >
+                I am:
+              </label>
+              <select
+                name="role"
+                id="role"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition"
+                value={registerData.role}
+                onChange={handleChange}
+              >
+                <option value="">Select Role</option>
+                {role.length ? (
+                  role.map((opt, index) => (
+                    <option value={opt.value} key={index}>
+                      {opt.display}
+                    </option>
+                  ))
+                ) : (
+                  <option value="">--No Role Found--</option>
+                )}
+              </select>
+            </div>
+            {error.role && (
+              <div className="text-red-500 text-sm mb-3">{error.role}</div>
             )}
           </div>
           <div className="grid">
@@ -243,7 +292,9 @@ const Register = () => {
               />
             </div>
             {error.address && (
-              <div className="text-red-500 text-sm mb-2 mt-[-2vh]">{error.address}</div>
+              <div className="text-red-500 text-sm mb-2 mt-[-2vh]">
+                {error.address}
+              </div>
             )}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -277,7 +328,9 @@ const Register = () => {
                 </span>
               </div>
               {error.password && (
-                <div className="text-red-500 text-sm mb-2 mt-[-2vh]">{error.password}</div>
+                <div className="text-red-500 text-sm mb-2 mt-[-2vh]">
+                  {error.password}
+                </div>
               )}
             </div>
             <div>
