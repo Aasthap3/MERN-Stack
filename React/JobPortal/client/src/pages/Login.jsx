@@ -1,8 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "../config/api";
+import toast from "react-hot-toast";
+import Loading from "../assets/infinite-spinner.svg";
+import { LuEye, LuEyeOff } from "react-icons/lu";
 
 const Login = () => {
-  const [comment, setComment] = useState({
+  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false);
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
@@ -10,24 +20,41 @@ const Login = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setComment((prev) => ({ ...prev, [name]: value }));
+    setLoginData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    console.log("Comment: ",comment);
-    
-    setComment({
-        email:"",
-        password:""
-    })
-  }
+    console.log("Data: ", loginData);
+
+    try {
+      const res = await axios.post("/auth/login", loginData);
+      toast.success(res.data.message);
+      navigate("/userDashboard");
+    } catch (error) {
+      toast.error(
+        `Error ${error?.response?.status || 503} : ${
+          error?.response?.data?.message || "Service Unavailable"
+        }`
+      );
+    } finally {
+      setLoading(false);
+    }
+    setLoginData({
+      email: "",
+      password: "",
+    });
+  };
 
   return (
     <>
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <form className="bg-white p-8 rounded shadow-md w-full max-w-sm" onSubmit={handleSubmit}>
+        <form
+          className="bg-white p-8 rounded shadow-md w-full max-w-sm"
+          onSubmit={handleSubmit}
+        >
           <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
           <div className="mb-4">
             <label className="block text-gray-700 mb-2" htmlFor="email">
@@ -39,7 +66,7 @@ const Login = () => {
               id="email"
               placeholder="Enter Email"
               name="email"
-              value={comment.email}
+              value={loginData.email}
               onChange={handleChange}
               required
             />
@@ -48,25 +75,44 @@ const Login = () => {
             <label className="block text-gray-700 mb-2" htmlFor="password">
               Password
             </label>
-            <input
-              className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-              type="password"
-              id="password"
-              placeholder="Enter Password"
-              name="password"
-              value={comment.password}
-              onChange={handleChange}
-              required
-            />
+            <div className="relative flex items-center">
+              <input
+                className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                type={passwordVisible ? "text" : "password"}
+                id="password"
+                placeholder="Enter Password"
+                name="password"
+                value={loginData.password}
+                onChange={handleChange}
+                required
+              />
+              <span
+                className="absolute right-1 border-s-2 border-gray-100 p-1 bg-white"
+                onClick={(e) => {
+                  passwordVisible
+                    ? setPasswordVisible(false)
+                    : setPasswordVisible(true);
+                }}
+              >
+                {passwordVisible ? <LuEye /> : <LuEyeOff />}
+              </span>
+            </div>
           </div>
           <button
             type="submit"
             className="w-full bg-pink-500 text-white py-2 rounded hover:bg-pink-600 transition-colors"
           >
-            Login
+            {loading ? (
+              <div className="flex gap-3 justify-center items-center h-full">
+                <img src={Loading} alt="" className="h-[1rem]" />
+                <span>Logging In...</span>
+              </div>
+            ) : (
+              "Login"
+            )}
           </button>
           <p className="mt-4 text-center text-sm text-gray-600">
-            Don't have an account?{" "}
+            Don't have an account?
             <Link
               to={"/register"}
               className="text-pink-500 hover:text-pink-600"
