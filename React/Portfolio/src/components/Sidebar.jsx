@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
   return (
     <>
-      <div className="container-fluid bg-dark text-light w-100 h-100 pt-5">
+      <div className="w-[25vh] h-full pt-5">
         <div className="container text-center">
           <img
             src={photo}

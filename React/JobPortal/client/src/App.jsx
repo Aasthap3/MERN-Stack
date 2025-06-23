@@ -8,9 +8,9 @@ import Contact from "./pages/Contact";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import {Toaster} from "react-hot-toast";
-import UserDashboard from "./dashboards/UserDashboard";
-import RecruiterDashboard from "./dashboards/RecruiterDashboard";
-import AdminDashboard from "./dashboards/AdminDashboard";
+import UserDashboard from "./pages/dashboards/UserDashboard";
+import AdminDashboard from "./pages/dashboards/AdminDashboard";
+import RecruiterDashboard from "./pages/dashboards/RecruiterDashboard";
 
 const App = () => {
   return (

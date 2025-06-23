@@ -4,3 +4,8 @@
 @theme {
     --font-mulish: "Mulish", sans-serif;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
