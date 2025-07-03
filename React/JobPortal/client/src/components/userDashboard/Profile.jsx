@@ -22,11 +22,11 @@ const Profile = () => {
         </div>
         <div className="bg-white rounded-lg my-5">
           <div className="details p-5 flex">
-            <div className="rounded-full overflow-hidden">
+            <div className="w-20 h-20 rounded-full overflow-hidden">
               <img
-                src={data.photo}
-                className=" w-20 h-20 object-cover"
-                alt=""
+                src={data.photo || "https://via.placeholder.com/150"}
+                className=" w-full h-full object-cover"
+                alt="User Avatar"
               />
             </div>
             <div className="flex flex-col h-20 px-5 justify-center">
