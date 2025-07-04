@@ -14,8 +14,8 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
   const sidebarItems = [
     { id: "overview", label: "Overview", icon: FaChartBar },
     { id: "profile", label: "My Profile", icon: FaUser },
-    { id: "applications", label: "Applied Jobs", icon: FaBriefcase },
-    { id: "saved", label: "Saved Jobs", icon: FaBookmark },
+    { id: "addJobs", label: "Post Jobs", icon: FaBriefcase },
+    { id: "applications", label: "See Applications", icon: FaBookmark },
   ];
 
   const handleLogout = () => {

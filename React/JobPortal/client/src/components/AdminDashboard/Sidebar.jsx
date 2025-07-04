@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../config/api";
 
 const Sidebar = ({ activeTab, setActiveTab }) => {
+  const navigate = useNavigate();
   const sidebarItems = [
     { id: "overview", label: "Overview", icon: FaChartBar },
     { id: "profile", label: "My Profile", icon: FaUser },
@@ -20,16 +21,16 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
 
   const handleLogout = () => {
     toast.promise(
-      axios.get("/auth/logout").then(() => {
-        sessionStorage.removeItem("user");
-        navigate("/login");
-      }),
-      {
-        loading: "Logging out...",
-        success: <b>Logged out successfully!</b>,
-        error: <b>Logout failed!</b>,
-      }
-    );
+        axios.get("/auth/logout").then(()=>{
+            sessionStorage.removeItem("user");
+            navigate("/login");
+        }),
+        {
+            loading: "Logging out...",
+            success: <b>Logged out successfully!</b>,
+            error: <b>Logout failed!</b>,
+        }
+    )
   };
   return (
     <>
