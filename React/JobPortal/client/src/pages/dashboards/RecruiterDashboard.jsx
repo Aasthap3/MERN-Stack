@@ -4,6 +4,7 @@ import Overview from '../../components/RecruiterDashboard/Overview';
 import Profile from '../../components/RecruiterDashboard/Profile';
 import Applications from '../../components/RecruiterDashboard/Applications';
 import PostJobs from '../../components/RecruiterDashboard/PostJobs';
+import Sidebar from '../../components/RecruiterDashboard/Sidebar';
 
 const RecruiterDashboard = () => {
   const [activeTab, setActiveTab] = useState("overview");

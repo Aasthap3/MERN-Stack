@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import ViewJobModal from "./Modals/viewJobModal";
 import EditJobModal from "./Modals/EditJobModal";
 import AddJobModal from "./Modals/AddJobModal";
-import { useState } from "react";
 
 const PostedJobs = [
   {
@@ -89,6 +88,16 @@ const PostJobs = () => {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isAddJobModalOpen, setAddJobModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
+
+  const [allJobs, setAllJobs] = useState([]);
+
+  const fetchAllJobs = () => {
+    setAllJobs(PostedJobs);
+  }
+
+  useEffect(() => {
+    fetchAllJobs();
+  },[isEditModalOpen, isAddJobModalOpen]);
   
   return (
     <>
@@ -96,7 +105,7 @@ const PostJobs = () => {
         <div className="flex justify-between items-center pb-5">
           <h2 className="text-2xl font-bold">Posted Jobs</h2>
           <button
-            className="border p-3 rounded hover:text-pink-500 flex gap-2 items-center"
+            className="border border-pink-500 text-pink-500 p-3 rounded hover:bg-pink-500 hover:text-white flex gap-2 items-center"
             onClick={() => setAddJobModalOpen(true)}
           >
             Post A New Job

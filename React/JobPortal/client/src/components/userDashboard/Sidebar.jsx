@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../config/api";
 
 const Sidebar = ({ activeTab, setActiveTab }) => {
+  const navigate = useNavigate();
   const sidebarItems = [
     { id: "overview", label: "Overview", icon: FaChartBar },
     { id: "profile", label: "My Profile", icon: FaUser },
@@ -31,6 +32,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
       }
     );
   };
+
   return (
     <>
       <div className="w-1/5 h-full overflow-y-auto scrollbar-hide bg-white flex flex-col">

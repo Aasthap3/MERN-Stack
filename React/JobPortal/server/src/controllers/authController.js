@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import { genAuthToken } from "../utils/auth.js";
 import getCloudinary from "../config/cloudinary.js";
 
-export const userRegister = async (req, res, next) => {
+export const Register = async (req, res, next) => {
   try {
     const { firstName, lastName, email, phone, role, address, password } =
       req.body;
@@ -52,7 +52,7 @@ export const userRegister = async (req, res, next) => {
   }
 };
 
-export const userLogin = async (req, res, next) => {
+export const Login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
@@ -95,18 +95,18 @@ export const userLogin = async (req, res, next) => {
   }
 };
 
-export const userLogout = (req, res) => {
+export const Logout = (req, res, next) => {
   try {
     res.cookie("secret", "", {
       expires: new Date(Date.now()),
-    })
-    res.status(200).json({message: "Logged Out Successfully"})
+    });
+    res.status(200).json({ message: "Logged Out Successfully" });
   } catch (error) {
     next(error);
   }
 };
 
-export const userUpdate = async (req, res, next) => {
+export const Update = async (req, res, next) => {
   try {
     const { firstName, lastName, phone } = req.body;
 
@@ -117,13 +117,19 @@ export const userUpdate = async (req, res, next) => {
     }
 
     let photo;
+
     if (req.file) {
+      console.log("req.file:", req.file);
+      console.log("req.body:", req.body);
+
       try {
-        const b64 = Buffer.from(req.file.buffer).toString("base64");
-        const dataURI = `data:${req.file.mimetype};base64,${b64}`;
+        const base64 = req.file.buffer.toString("base64");
+        const dataURI = `data:${req.file.mimetype};base64,${base64}`;
+
         const cloudinary = getCloudinary();
-        const result = await cloudinary.uploader.upload(dataURI);
-        photo = result.secure_url;
+        const uploadResponse = await cloudinary.uploader.upload(dataURI);
+
+        photo = uploadResponse.secure_url;
       } catch (err) {
         const error = new Error("Image upload failed: " + err.message);
         error.statusCode = 500;
@@ -139,16 +145,16 @@ export const userUpdate = async (req, res, next) => {
         phone,
         photo: photo || req.user.photo,
       },
-      {new: true}
+      { new: true }
     );
 
-    if(!updatedUser) {
+    if (!updatedUser) {
       const error = new Error("User not found");
       error.statusCode = 404;
       return next(error);
     }
 
-    res.json({ message: "User Updated Successfully", data: updatedUser});
+    res.json({ message: "User Updated Successfully", data: updatedUser });
   } catch (error) {
     next(error);
   }

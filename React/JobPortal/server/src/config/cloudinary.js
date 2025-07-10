@@ -12,6 +12,7 @@ const configCloudinary = () => {
 
     isConfigured = true;
   }
+  
   return cloudinary;
 };
 
