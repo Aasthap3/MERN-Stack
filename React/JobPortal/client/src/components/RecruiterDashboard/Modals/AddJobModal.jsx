@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const AddJobModal = ({ isOpen, isClose }) => {
   const [jobData, setJobData] = useState({
@@ -21,14 +22,32 @@ const AddJobModal = ({ isOpen, isClose }) => {
     setJobData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Job Posted Successfully", jobData);
+    try {
+      const res = await axios.post("/recruiter/addJob", jobData);
+      toast.success(res.data.message);
+      setJobData({
+        jobTitle: "",
+        company: "",
+        jobLocation: "",
+        salaryRange: "",
+        workMode: "",
+        jobType: "",
+        description: "",
+        preferedQualification: "",
+        numberOfOpenings: "",
+        experienceRequired: "",
+        applicationDeadline: "",
+      });
+    } catch (error) {
+      toast.error(error.message);
+    }
     isClose();
   };
 
-  if(!isOpen) return null;
-  
+  if (!isOpen) return null;
+
   return (
     <>
       <div className="fixed inset-0 bg-black/50 p-30 z-50">

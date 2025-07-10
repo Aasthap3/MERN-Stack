@@ -13,7 +13,7 @@ export const Protect = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const currentUser = await User.findById(decoded.id);
 
-    if(!currentUser) {
+    if (!currentUser) {
       const error = new Error("User not found");
       error.statusCode = 401;
       return next(error);
@@ -26,9 +26,9 @@ export const Protect = async (req, res, next) => {
   }
 };
 
-export const isUser = () => {
+export const isUser = (req, res, next) => {
   try {
-    if(!req.user.role === "User") {
+    if (!req.user.role === "User") {
       const error = new Error("Unauthorized");
       error.statusCode = 401;
       return next(error);
@@ -37,11 +37,11 @@ export const isUser = () => {
   } catch (error) {
     next(error);
   }
-}
+};
 
-export const isRecruiter = () => {
+export const isRecruiter = (req, res, next) => {
   try {
-    if(!req.user.role === "Recruiter") {
+    if (!req.user.role === "Recruiter") {
       const error = new Error("Unauthorized");
       error.statusCode = 401;
       return next(error);
@@ -50,11 +50,11 @@ export const isRecruiter = () => {
   } catch (error) {
     next(error);
   }
-}
+};
 
-export const isAdmin = () => {
+export const isAdmin = (req, res, next) => {
   try {
-    if(!req.user.role === "Admin") {
+    if (!req.user.role === "Admin") {
       const error = new Error("Unauthorized");
       error.statusCode = 401;
       return next(error);
@@ -63,4 +63,4 @@ export const isAdmin = () => {
   } catch (error) {
     next(error);
   }
-}
+};
