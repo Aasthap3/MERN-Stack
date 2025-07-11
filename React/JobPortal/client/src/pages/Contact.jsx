@@ -2,32 +2,40 @@ import React, { useState } from "react";
 import { RiHome2Line } from "react-icons/ri";
 import { MdOutlinePhoneIphone } from "react-icons/md";
 import { FiMail } from "react-icons/fi";
+import toast from "react-hot-toast";
+import axios from "../config/api";
 
 const Contact = () => {
   const [contactData, setContactData] = useState({
     name: "",
     email: "",
     subject: "",
-    message: "",
+    formMessage: "",
   });
 
-  const handleChange = (e) => {
-    const { value, name } = e.target;
+  const [submitted, setSubmitted] = useState(false);
 
-    setContactData((prev) => ({ ...prev, [name]: value }));
+  const handleChange = (e) => {
+    setContactData({ ...contactData, [e.target.name]: e.target.value }); //prev thing
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitted(true);
 
-    console.log("Data: ", contactData);
-
-    setContactData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+    try {
+      const res = await axios.post("/public/contactForm", contactData);
+      toast.success(res.data.message);
+      setSubmitted(true);
+      setContactData({
+        name: "",
+        email: "",
+        subject: "",
+        formMessage: "",
+      });
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
   return (
     <>
@@ -50,8 +58,8 @@ const Contact = () => {
             <textarea
               rows={10}
               placeholder="Enter message"
-              name="message"
-              value={contactData.message}
+              name="formMessage"
+              value={contactData.formMessage}
               onChange={handleChange}
               className="border border-gray-300 p-3 text-gray-700 text-sm"
             />
@@ -82,7 +90,8 @@ const Contact = () => {
               className="border border-gray-300 p-3 text-gray-700 text-sm"
             />
             <div>
-              <button type="submit"
+              <button
+                type="submit"
                 className="border border-pink-500 text-pink-500 py-4 px-8 hover:bg-pink-500 hover:text-white"
               >
                 SEND
