@@ -12,7 +12,7 @@ const EditJobModal = ({ isOpen, isClose, selectedJob }) => {
     workMode: "",
     jobType: "",
     description: "",
-    preferedQualification: "",
+    preferredQualification: "",
     numberOfOpenings: "",
     experienceRequired: "",
     applicationDeadline: "",
@@ -28,7 +28,7 @@ const EditJobModal = ({ isOpen, isClose, selectedJob }) => {
         workMode: selectedJob.workMode || "",
         jobType: selectedJob.jobType || "",
         description: selectedJob.description || "",
-        preferedQualification: selectedJob.preferedQualification || "",
+        preferredQualification: selectedJob.preferredQualification || "",
         numberOfOpenings: selectedJob.numberOfOpenings || "",
         experienceRequired: selectedJob.experienceRequired || "",
         applicationDeadline: selectedJob.applicationDeadline
@@ -66,7 +66,7 @@ const EditJobModal = ({ isOpen, isClose, selectedJob }) => {
       workMode: "",
       jobType: "",
       description: "",
-      preferedQualification: "",
+      preferredQualification: "",
       numberOfOpenings: "",
       experienceRequired: "",
       applicationDeadline: "",
@@ -96,7 +96,7 @@ const EditJobModal = ({ isOpen, isClose, selectedJob }) => {
                 <input
                   type="text"
                   name="jobTitle"
-                  value={formData.jobTitle}
+                  value={jobData.jobTitle}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
@@ -110,7 +110,7 @@ const EditJobModal = ({ isOpen, isClose, selectedJob }) => {
                 <input
                   type="text"
                   name="company"
-                  value={formData.company}
+                  value={jobData.company}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
@@ -124,7 +124,7 @@ const EditJobModal = ({ isOpen, isClose, selectedJob }) => {
                 <input
                   type="text"
                   name="jobLocation"
-                  value={formData.jobLocation}
+                  value={jobData.jobLocation}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
@@ -138,7 +138,7 @@ const EditJobModal = ({ isOpen, isClose, selectedJob }) => {
                 <input
                   type="text"
                   name="salaryRange"
-                  value={formData.salaryRange}
+                  value={jobData.salaryRange}
                   onChange={handleInputChange}
                   placeholder="e.g., $50,000 - $70,000"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -151,7 +151,7 @@ const EditJobModal = ({ isOpen, isClose, selectedJob }) => {
                 </label>
                 <select
                   name="workMode"
-                  value={formData.workMode}
+                  value={jobData.workMode}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
@@ -169,7 +169,7 @@ const EditJobModal = ({ isOpen, isClose, selectedJob }) => {
                 </label>
                 <select
                   name="jobType"
-                  value={formData.jobType}
+                  value={jobData.jobType}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
@@ -190,7 +190,7 @@ const EditJobModal = ({ isOpen, isClose, selectedJob }) => {
                 <input
                   type="number"
                   name="numberOfOpenings"
-                  value={formData.numberOfOpenings}
+                  value={jobData.numberOfOpenings}
                   onChange={handleInputChange}
                   min="1"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -204,7 +204,7 @@ const EditJobModal = ({ isOpen, isClose, selectedJob }) => {
                 <input
                   type="text"
                   name="experienceRequired"
-                  value={formData.experienceRequired}
+                  value={jobData.experienceRequired}
                   onChange={handleInputChange}
                   min="0"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -218,7 +218,7 @@ const EditJobModal = ({ isOpen, isClose, selectedJob }) => {
                 <input
                   type="date"
                   name="applicationDeadline"
-                  value={formData.applicationDeadline}
+                  value={jobData.applicationDeadline}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
@@ -231,7 +231,7 @@ const EditJobModal = ({ isOpen, isClose, selectedJob }) => {
               </label>
               <textarea
                 name="description"
-                value={formData.description}
+                value={jobData.description}
                 onChange={handleInputChange}
                 rows="4"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -246,7 +246,7 @@ const EditJobModal = ({ isOpen, isClose, selectedJob }) => {
               </label>
               <textarea
                 name="preferedQualification"
-                value={formData.preferedQualification}
+                value={jobData.preferredQualification}
                 onChange={handleInputChange}
                 rows="3"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"

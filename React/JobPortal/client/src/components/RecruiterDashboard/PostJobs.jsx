@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
-import ViewJobModal from "./Modals/viewJobModal";
+import ViewJobModal from "./Modals/ViewJobModal";
 import EditJobModal from "./Modals/EditJobModal";
 import AddJobModal from "./Modals/AddJobModal";
 import axios from "../../config/api";

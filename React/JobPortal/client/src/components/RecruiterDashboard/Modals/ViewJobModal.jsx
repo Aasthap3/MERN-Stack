@@ -20,7 +20,7 @@ const ViewJobModal = ({ isOpen, isClose, selectedJob }) => {
                 <strong>Company:</strong> {selectedJob?.company}
             </p>
             <p className="text-gray-700 mb-2">
-                <strong>Location:</strong> {selectedJob?.location}
+                <strong>Location:</strong> {selectedJob?.jobLocation}
             </p>
             <p className="text-gray-700 mb-2">
                 <strong>Salary Range:</strong> {selectedJob?.salaryRange}

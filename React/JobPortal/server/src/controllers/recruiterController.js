@@ -10,7 +10,7 @@ export const addJob = async (req, res, next) => {
       workMode,
       jobType,
       description,
-      preferedQualification,
+      preferredQualification,
       numberOfOpenings,
       experienceRequired,
       applicationDeadline,
@@ -24,7 +24,7 @@ export const addJob = async (req, res, next) => {
       !workMode ||
       !jobType ||
       !description ||
-      !preferedQualification ||
+      !preferredQualification ||
       !numberOfOpenings ||
       !experienceRequired ||
       !applicationDeadline
@@ -43,7 +43,7 @@ export const addJob = async (req, res, next) => {
       workMode,
       jobType,
       description,
-      preferedQualification,
+      preferredQualification,
       numberOfOpenings,
       experienceRequired,
       applicationDeadline,
@@ -75,7 +75,7 @@ export const editJob = async (req, res, next) => {
       workMode,
       jobType,
       description,
-      preferedQualification,
+      preferredQualification,
       numberOfOpenings,
       experienceRequired,
       applicationDeadline,
@@ -99,7 +99,7 @@ export const editJob = async (req, res, next) => {
         workMode,
         jobType,
         description,
-        preferedQualification,
+        preferredQualification,
         numberOfOpenings,
         experienceRequired,
         applicationDeadline,

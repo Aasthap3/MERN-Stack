@@ -1,4 +1,3 @@
-import { application } from "express";
 import mongoose from "mongoose";
 
 const jobSchema = mongoose.Schema(
@@ -46,7 +45,7 @@ const jobSchema = mongoose.Schema(
       type: Number,
       default: 1,
     },
-    postedData: {
+    postedDate: {
       type: Date,
       required: true,
       default: Date.now,

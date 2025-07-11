@@ -1,6 +1,7 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { SlClose } from "react-icons/sl";
 import toast from "react-hot-toast";
+import axios from "../../../config/api";
 
 const AddJobModal = ({ isOpen, isClose }) => {
   const [jobData, setJobData] = useState({
@@ -11,13 +12,13 @@ const AddJobModal = ({ isOpen, isClose }) => {
     workMode: "",
     jobType: "",
     description: "",
-    preferedQualification: "",
+    preferredQualification: "",
     numberOfOpenings: "",
     experienceRequired: "",
     applicationDeadline: "",
   });
 
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setJobData((prev) => ({ ...prev, [name]: value }));
   };
@@ -35,7 +36,7 @@ const AddJobModal = ({ isOpen, isClose }) => {
         workMode: "",
         jobType: "",
         description: "",
-        preferedQualification: "",
+        preferredQualification: "",
         numberOfOpenings: "",
         experienceRequired: "",
         applicationDeadline: "",
@@ -72,7 +73,7 @@ const AddJobModal = ({ isOpen, isClose }) => {
                 <input
                   type="text"
                   name="jobTitle"
-                  value={formData.jobTitle}
+                  value={jobData.jobTitle}
                   onChange={handleInputChange}
                   placeholder="Frontend Developer"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -87,7 +88,7 @@ const AddJobModal = ({ isOpen, isClose }) => {
                 <input
                   type="text"
                   name="company"
-                  value={formData.company}
+                  value={jobData.company}
                   onChange={handleInputChange}
                   placeholder="TechNova Solutions"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -102,7 +103,7 @@ const AddJobModal = ({ isOpen, isClose }) => {
                 <input
                   type="text"
                   name="jobLocation"
-                  value={formData.jobLocation}
+                  value={jobData.jobLocation}
                   onChange={handleInputChange}
                   placeholder="Bangalore, India"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -117,7 +118,7 @@ const AddJobModal = ({ isOpen, isClose }) => {
                 <input
                   type="text"
                   name="salaryRange"
-                  value={formData.salaryRange}
+                  value={jobData.salaryRange}
                   onChange={handleInputChange}
                   placeholder="₹5,00,000 - ₹7,50,000 per annum"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -130,7 +131,7 @@ const AddJobModal = ({ isOpen, isClose }) => {
                 </label>
                 <select
                   name="workMode"
-                  value={formData.workMode}
+                  value={jobData.workMode}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                   required
@@ -148,7 +149,7 @@ const AddJobModal = ({ isOpen, isClose }) => {
                 </label>
                 <select
                   name="jobType"
-                  value={formData.jobType}
+                  value={jobData.jobType}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                   required
@@ -169,7 +170,7 @@ const AddJobModal = ({ isOpen, isClose }) => {
                 <input
                   type="number"
                   name="numberOfOpenings"
-                  value={formData.numberOfOpenings}
+                  value={jobData.numberOfOpenings}
                   onChange={handleInputChange}
                   placeholder="3"
                   min="1"
@@ -184,7 +185,7 @@ const AddJobModal = ({ isOpen, isClose }) => {
                 <input
                   type="text"
                   name="experienceRequired"
-                  value={formData.experienceRequired}
+                  value={jobData.experienceRequired}
                   onChange={handleInputChange}
                   placeholder="1-3 years"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -198,7 +199,7 @@ const AddJobModal = ({ isOpen, isClose }) => {
                 <input
                   type="date"
                   name="applicationDeadline"
-                  value={formData.applicationDeadline}
+                  value={jobData.applicationDeadline}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
@@ -211,7 +212,7 @@ const AddJobModal = ({ isOpen, isClose }) => {
               </label>
               <textarea
                 name="description"
-                value={formData.description}
+                value={jobData.description}
                 onChange={handleInputChange}
                 rows="4"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -225,8 +226,8 @@ const AddJobModal = ({ isOpen, isClose }) => {
                 Preferred Qualifications
               </label>
               <textarea
-                name="preferedQualification"
-                value={formData.preferedQualification}
+                name="preferredQualification"
+                value={jobData.preferredQualification}
                 onChange={handleInputChange}
                 rows="3"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
