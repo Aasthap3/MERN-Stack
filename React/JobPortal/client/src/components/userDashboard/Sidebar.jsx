@@ -9,8 +9,10 @@ import {
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import axios from "../../config/api";
+import { useAuth } from "../../context/AuthContext";
 
 const Sidebar = ({ activeTab, setActiveTab }) => {
+  const {user, setUser, setIsLogin} = useAuth();
   const navigate = useNavigate();
   const sidebarItems = [
     { id: "overview", label: "Overview", icon: FaChartBar },
@@ -23,6 +25,8 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
     toast.promise(
       axios.get("/auth/logout").then(() => {
         sessionStorage.removeItem("user");
+        setIsLogin(false);
+        setUser(null);
         navigate("/login");
       }),
       {
@@ -37,7 +41,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
     <>
       <div className="w-1/5 h-full overflow-y-auto scrollbar-hide bg-white flex flex-col">
         <div className="p-4 h-9/10">
-          <h1 className="text-xl font-bold text-gray-800 mb-4">My Dashboard</h1>
+          <h1 className="text-xl font-bold text-gray-800 mb-4">{user.firstName}'s Dashboard</h1>
           <nav>
             {sidebarItems.map((item) => (
               <button

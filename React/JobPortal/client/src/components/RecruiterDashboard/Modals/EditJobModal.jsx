@@ -4,6 +4,7 @@ import axios from "../../../config/api";
 import toast from "react-hot-toast";
 
 const EditJobModal = ({ isOpen, isClose, selectedJob }) => {
+  
   const [jobData, setJobData] = useState({
     jobTitle: "",
     company: "",

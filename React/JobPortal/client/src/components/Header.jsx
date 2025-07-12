@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import { IoMdMenu } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
+  const {
+    user,
+    setUser,
+    isLogin,
+    isAdmin,
+    isRecruiter,
+    setIsLogin,
+    setIsAdmin,
+    setIsRecruiter,
+  } = useAuth();
+
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    isRecruiter
+      ? navigate("/recruiterDashboard")
+      : isAdmin
+      ? navigate("/adminDashboard")
+      : navigate("/userDashboard");
+  };
+
   return (
     <>
       <nav className="sticky flex justify-between bg-white py-2 items-center w-[100%] px-20">
@@ -20,41 +41,67 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link to={"/jobs"} className=" text-lg hover:text-pink-500" href="#">
+              <Link
+                to={"/jobs"}
+                className=" text-lg hover:text-pink-500"
+                href="#"
+              >
                 Find a Job
               </Link>
             </li>
             <li>
-              <Link to={"/about"} className=" text-lg hover:text-pink-500" href="#">
+              <Link
+                to={"/about"}
+                className=" text-lg hover:text-pink-500"
+                href="#"
+              >
                 About
               </Link>
             </li>
             <li>
-              <Link to={"/contact"} className=" text-lg hover:text-pink-500" href="#">
+              <Link
+                to={"/contact"}
+                className=" text-lg hover:text-pink-500"
+                href="#"
+              >
                 Contact
               </Link>
             </li>
           </ul>
         </div>
-        <div className="flex items-center gap-4">
+        {user ? (
           <button
-            className=" bg-pink-500 text-md text-white px-6 py-3 hover:bg-pink-600"
-            onClick={() => {
-              navigate("/register");
-            }}
+            className="py-2 px-4 flex gap-2 justify-center items-center"
+            onClick={handleClick}
           >
-            Register
+            <img
+              src={user.photo}
+              alt=""
+              className="h-10 w-10 object-cover rounded-full"
+            />
+
           </button>
-          <button
-            className=" border border-pink-500 text-md text-pink-500 px-6 py-3 hover:bg-pink-600 hover:text-white"
-            onClick={() => {
-              navigate("/login");
-            }}
-          >
-            Login
-          </button>
-          <IoMdMenu className="text-3xl cursor-pointer md:hidden" />
-        </div>
+        ) : (
+          <div className="flex items-center gap-4">
+            <button
+              className=" bg-pink-500 text-md text-white px-6 py-3 hover:bg-pink-600"
+              onClick={() => {
+                navigate("/register");
+              }}
+            >
+              Register
+            </button>
+            <button
+              className=" border border-pink-500 text-md text-pink-500 px-6 py-3 hover:bg-pink-600 hover:text-white"
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Login
+            </button>
+            <IoMdMenu className="text-3xl cursor-pointer md:hidden" />
+          </div>
+        )}
       </nav>
     </>
   );

@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { SlClose } from "react-icons/sl";
 import { FaCamera } from "react-icons/fa";
 import axios from "../../../config/api";
+import { useAuth } from "../../../context/AuthContext";
 
 const UserEditModal = ({ isOpen, isClose }) => {
   if (!isOpen) return null;
+
+  const {setUser} = useAuth();
 
   const [preview, setPreview] = useState(null);
   const [photo, setPhoto] = useState("");
@@ -39,6 +42,8 @@ const UserEditModal = ({ isOpen, isClose }) => {
       });
       console.log(res.data);
       sessionStorage.setItem("user", JSON.stringify(res.data.data));
+      setUser(res.data.data);
+      isClose();
     } catch (error) {
       console.log(error);
     }

@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdOutlineModeEdit } from "react-icons/md";
 import UserEditModal from "./Modals/UserEditModal";
+import { useAuth } from "../../context/AuthContext";
 
 const Profile = () => {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const {user} = useAuth();
+
   const [data, setData] = useState(JSON.parse(sessionStorage.getItem("user")));
+
+  useEffect(() => {
+    setData(user);
+  },[user]);
 
   return (
     <>
