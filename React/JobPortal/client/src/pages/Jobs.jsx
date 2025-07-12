@@ -1,9 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import job1 from "../assets/job-list1.png";
-import job2 from "../assets/job-list2.png";
-import job3 from "../assets/job-list3.png";
-import job4 from "../assets/job-list4.png";
 import { IoLocationOutline } from "react-icons/io5";
 import toast from "react-hot-toast";
 import axios from "../config/api";
@@ -17,9 +12,9 @@ const Jobs = () => {
 
   const fetchALlJobs = async () => {
     try {
-      const res = await axios.get("/public/allJobs");
+      const res = await axios.get("/public/jobs");
       setJobs(res.data.data);
-      toast.success(res.data.data);
+      toast.success(res.data.message);
     } catch (error) {
       toast.error(error.message);
     }
@@ -51,13 +46,13 @@ const Jobs = () => {
           {jobs.map((job, idx) => (
             <div
               key={idx}
-              className="job-list flex my-5 hover:shadow-2xl p-5 gap-6 w-fit"
+              className="job-list flex my-5 border border-gray-200 hover:shadow-2xl p-5 gap-6 w-[60vw]"
             >
-              <div className="job-des px-5 grid gap-3 py-2">
+              <div className="job-des px-5 grid gap-3 py-2 w-8/10">
                 <div className="job-title">
                   <h3 className="text-xl">{job.jobTitle}</h3>
                 </div>
-                <div className="job-details flex text-gray-500 gap-15">
+                <div className="job-details grid grid-cols-3 text-gray-500 gap-5">
                   <span>{job.company}</span>
                   <span className=" inline-flex">
                     <IoLocationOutline />
@@ -66,14 +61,14 @@ const Jobs = () => {
                   <span>{job.salaryRange}</span>
                 </div>
               </div>
-              <div className="job-apply grid gap-2 p-2">
+              <div className="job-apply grid gap-2 p-2 justify-center">
                 <div className="job-btn">
-                  <button className="border border-[#8b92dd] text-[#8b92dd] py-1 px-4 rounded-2xl hover:bg-[#8b92dd] hover:text-white" onClick={() => handleViewJob(job)}>
+                  <button className="border border-[#8b92dd] text-[#8b92dd] py-3 px-6 hover:bg-[#8b92dd] hover:text-white" onClick={() => handleViewJob(job)}>
                     View Job
                   </button>
                 </div>
-                <div className="job-time">
-                  <span>7 hours ago</span>
+                <div className="job-time text-center">
+                  <span>{new Date(job.applicationDeadline).toLocaleDateString("en-GB")}</span>
                 </div>
               </div>
             </div>
