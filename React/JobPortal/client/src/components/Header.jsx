@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/jobify-logo.png";
 import { IoMdMenu } from "react-icons/io";
+import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -31,19 +32,19 @@ const Header = () => {
     <>
       <nav className="sticky flex justify-between bg-white py-2 items-center w-[100%] px-20">
         <div>
-          <img src={logo} alt="logo" className="h-14" />
+          <img src={logo} alt="logo" className="h-8" />
         </div>
         <div className="md:static absolute bg-white md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5">
           <ul className="flex md:flex-row flex-col md:items-center md:gap-6 gap-6">
             <li>
-              <Link to={"/"} className=" text-lg hover:text-pink-500" href="#">
+              <Link to={"/"} className=" text-lg hover:text-cyan-900" href="#">
                 Home
               </Link>
             </li>
             <li>
               <Link
                 to={"/jobs"}
-                className=" text-lg hover:text-pink-500"
+                className=" text-lg hover:text-cyan-900"
                 href="#"
               >
                 Find a Job
@@ -52,7 +53,7 @@ const Header = () => {
             <li>
               <Link
                 to={"/about"}
-                className=" text-lg hover:text-pink-500"
+                className=" text-lg hover:text-cyan-900"
                 href="#"
               >
                 About
@@ -61,7 +62,7 @@ const Header = () => {
             <li>
               <Link
                 to={"/contact"}
-                className=" text-lg hover:text-pink-500"
+                className=" text-lg hover:text-cyan-900"
                 href="#"
               >
                 Contact
@@ -79,12 +80,11 @@ const Header = () => {
               alt=""
               className="h-10 w-10 object-cover rounded-full"
             />
-
           </button>
         ) : (
           <div className="flex items-center gap-4">
             <button
-              className=" bg-pink-500 text-md text-white px-6 py-3 hover:bg-pink-600"
+              className=" bg-cyan-900 text-md text-white px-6 py-3 hover:bg-cyan-950"
               onClick={() => {
                 navigate("/register");
               }}
@@ -92,7 +92,7 @@ const Header = () => {
               Register
             </button>
             <button
-              className=" border border-pink-500 text-md text-pink-500 px-6 py-3 hover:bg-pink-600 hover:text-white"
+              className=" border border-cyan-900 text-md text-cyan-900 px-6 py-3 hover:bg-cyan-950 hover:text-white"
               onClick={() => {
                 navigate("/login");
               }}

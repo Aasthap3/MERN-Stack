@@ -70,7 +70,7 @@ const Login = () => {
               Email
             </label>
             <input
-              className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-cyan-900"
               type="email"
               id="email"
               placeholder="Enter Email"
@@ -86,7 +86,7 @@ const Login = () => {
             </label>
             <div className="relative flex items-center">
               <input
-                className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-cyan-900"
                 type={passwordVisible ? "text" : "password"}
                 id="password"
                 placeholder="Enter Password"
@@ -109,9 +109,9 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-pink-500 text-white py-2 rounded hover:bg-pink-600 transition-colors"
+            className="w-full bg-cyan-900 text-white py-2 rounded hover:bg-cyan-900 transition-colors"
           >
-            {loading ? (
+            {loading ? (  
               <div className="flex gap-3 justify-center items-center h-full">
                 <img src={Loading} alt="" className="h-[1rem]" />
                 <span>Logging In...</span>
@@ -124,7 +124,7 @@ const Login = () => {
             Don't have an account?
             <Link
               to={"/register"}
-              className="text-pink-500 hover:text-pink-600"
+              className="text-cyan-900 hover:text-cyan-950"
             >
               Register
             </Link>

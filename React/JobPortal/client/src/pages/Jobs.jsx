@@ -8,7 +8,6 @@ const Jobs = () => {
   const [jobs, setJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
-  const [appliedJob, setAppliedJob] = useState(null);
 
   const fetchALlJobs = async () => {
     try {
@@ -29,11 +28,6 @@ const Jobs = () => {
     setModalOpen(true);
   };
 
-  const handleApply = (job) => {
-    setAppliedJob(job);
-    setModalOpen(false);
-    alert(`Applied for: ${job.jobTitle} at ${job.company}`);
-  };
   return (
     <>
       <div className="mt-50 mx-45">
@@ -78,7 +72,6 @@ const Jobs = () => {
           isOpen={isModalOpen}
           isClose={() => setModalOpen(false)}
           job={selectedJob}
-          onApply={handleApply}
         />
       </div>
     </>

@@ -143,7 +143,7 @@ const Register = () => {
           className="bg-white p-10 mt-10 mb-15 rounded-2xl shadow-2xl w-full max-w-lg border border-gray-200"
           onSubmit={handleSubmit}
         >
-          <h2 className="text-3xl font-extrabold mb-8 text-center text-pink-500 tracking-wide">
+          <h2 className="text-3xl font-extrabold mb-8 text-center text-cyan-900 tracking-wide">
             Create Your Account
           </h2>
           <div className="grid">
@@ -162,7 +162,7 @@ const Register = () => {
                   required
                   value={registerData.firstName}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-900 transition"
                   placeholder="Enter your first name"
                 />
               </div>
@@ -180,7 +180,7 @@ const Register = () => {
                   required
                   value={registerData.lastName}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-900 transition"
                   placeholder="Enter your last name"
                 />
               </div>
@@ -206,7 +206,7 @@ const Register = () => {
                 required
                 value={registerData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-900 transition"
                 placeholder="Enter your email"
               />
             </div>
@@ -231,7 +231,7 @@ const Register = () => {
                 required
                 value={registerData.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-900 transition"
                 placeholder="Enter your phone number"
               />
             </div>
@@ -252,7 +252,7 @@ const Register = () => {
               <select
                 name="role"
                 id="role"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-900 transition"
                 value={registerData.role}
                 onChange={handleChange}
               >
@@ -287,7 +287,7 @@ const Register = () => {
                 required
                 value={registerData.address}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-900 transition"
                 placeholder="Enter your address"
               />
             </div>
@@ -313,7 +313,7 @@ const Register = () => {
                   required
                   value={registerData.password}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-900 transition"
                   placeholder="Enter your password"
                 />
                 <span
@@ -348,7 +348,7 @@ const Register = () => {
                   required
                   value={registerData.confirmPassword}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-900 transition"
                   placeholder="Re-enter your password"
                 />
                 <span
@@ -372,7 +372,7 @@ const Register = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-lg font-semibold text-lg shadow-md"
+            className="w-full bg-cyan-900 hover:bg-cyan-950 text-white py-3 rounded-lg font-semibold text-lg shadow-md"
           >
             {loading ? (
               <div className="flex gap-3 justify-center items-center h-full">
@@ -387,7 +387,7 @@ const Register = () => {
             Already have an account?
             <Link
               to="/login"
-              className="text-pink-600 hover:underline font-medium"
+              className="text-cyan-900 hover:underline font-medium"
             >
               Login
             </Link>

@@ -1,7 +1,47 @@
 import React from "react";
 import { SlClose } from "react-icons/sl";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import toast from "react-hot-toast";
+import axios from "../../config/api";
 
 const ViewJobModal = ({ isOpen, isClose, job }) => {
+  const navigate = useNavigate();
+  const { isLogin } = useAuth();
+
+  const handleApply = async () => {
+    try {
+      const res = await axios.post(`user/apply/$(job._id)`);
+      toast.success(res.data.message);
+    } catch (error) {
+      error?.response?.status === 409
+        ? toast(error?.response?.data?.message, {
+            icon: "🚫",
+          })
+        : toast.error(
+            `Error ${error?.reponse?.status || "503"} : ${
+              error?.response?.data?.message || "Service Unavailable"
+            }`
+          );
+    }
+  };
+
+  const handleSave = async () => {
+    try {
+        const res = await axios.post(`user/save/$(job._id)`);
+      toast.success(res.data.message);
+    } catch (error) {
+        error?.response?.status === 409
+        ? toast(error?.response?.data?.message, {
+            icon: "🚫",
+          })
+        : toast.error(
+            `Error ${error?.reponse?.status || "503"} : ${
+              error?.response?.data?.message || "Service Unavailable"
+            }`
+          );
+    }
+  }
   if (!isOpen || !job) return null;
 
   return (
@@ -52,10 +92,29 @@ const ViewJobModal = ({ isOpen, isClose, job }) => {
               <strong>Application Deadline:</strong>{" "}
               {new Date(job?.applicationDeadline).toLocaleDateString()}
             </p>
-            <button className="px-6 py-2 border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white"
-            onClick={() => onApply(job)}>
-              Apply
-            </button>
+            {isLogin ? (
+              <div className="flex gap-4">
+                <button
+                  className="px-6 py-2 border border-cyan-900 text-cyan-900 hover:bg-cyan-900 hover:text-white"
+                  onClick={() => handleApply()}
+                >
+                  Apply
+                </button>
+                <button
+                  className="px-6 py-2 border border-cyan-900 text-cyan-900 hover:bg-cyan-900 hover:text-white"
+                  onClick={() => handleSave()}
+                >
+                  Save for Later
+                </button>
+              </div>
+            ) : (
+              <button
+                className="px-6 py-2 border border-cyan-900 text-cyan-900 hover:bg-cyan-900 hover:text-white"
+                onClick={() => navigate("/login")}
+              >
+                Apply
+              </button>
+            )}
           </div>
         </div>
       </div>
