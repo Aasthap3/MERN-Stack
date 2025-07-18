@@ -8,7 +8,7 @@ const SavedJobs = () => {
   const fetchSavedJobs = async () => {
     try {
       const res = await axios.get("/user/allSavedJobs");
-      setJobs(ResizeObserver.data.data);
+      setJobs(res.data.data);
     } catch (error) {
       toast.error(
         `Error ${error?.response?.status || "503"} : ${
@@ -20,9 +20,17 @@ const SavedJobs = () => {
 
   const handleApplyJob = async () => {
     try {
-      console.log("Job Applied");
+      const res = await axios.patch(
+        `/user/applySaved?applicationId=${applicationId}`
+      );
+      setJobs(jobs.filter((job) => job._id !== applicationId));
+      toast.success(
+        res.data.message || "Job application submitted successfuly!"
+      );
     } catch (error) {
-      toast.error("Failed to apply to job");
+      toast.error(
+        `Failed to apply: ${error?.response?.data?.message || "Unknown error"}`
+      );
     }
   };
 
@@ -31,9 +39,14 @@ const SavedJobs = () => {
       window.confirm("Are you sure you want to remove this job from saved?")
     ) {
       try {
-        console.log("Unsave button clicked");
+        const res = await axios.delete(`/user/unsave/${applicationId}`);
+        toast.success(res.data.message);
       } catch (error) {
-        toast.error("Failed to remove job from saved");
+        toast.error(
+          `Failed to remove job: ${
+            error?.response?.data?.message || "Unknown Error"
+          }`
+        );
       }
     }
   };
@@ -78,7 +91,7 @@ const SavedJobs = () => {
             <div className="p-8 text-center text-gray-500">
               <p>No jobs have been saved.</p>
             </div>
-          ): (
+          ) : (
             jobs.map((application) => (
               <div
                 key={application._id}
@@ -93,25 +106,25 @@ const SavedJobs = () => {
                       {application.jobId.company}
                     </p>
                     <p className="text-sm text-gray-500 mt-1">
-                      <span className="font-medium">Location:</span>{" "}
+                      <span className="font-medium">Location: </span>
                       {application.jobId.jobLocation}
                     </p>
                     <p className="text-sm text-gray-500 mt-1">
-                      <span className="font-medium">Salary:</span>{" "}
+                      <span className="font-medium">Salary: </span>
                       {application.jobId.salaryRange}
                     </p>
                     <p className="text-sm text-gray-500 mt-1">
-                      <span className="font-medium">Work Mode:</span>{" "}
+                      <span className="font-medium">Work Mode: </span>
                       {application.jobId.workMode} • {application.jobId.jobType}
                     </p>
                     <p className="text-sm text-gray-500 mt-1">
-                      <span className="font-medium">Saved on:</span>{" "}
+                      <span className="font-medium">Saved on: </span>
                       {formatDate(application.appliedOn)}
                     </p>
                     <p className="text-sm text-gray-500 mt-1">
-                      <span className="font-medium">Recruiter:</span>
-                      {application.recruiterID.firstName}{" "}
-                      {application.recruiterID.lastName}
+                      <span className="font-medium">Recruiter: </span>
+                      {application.recruiterId.firstName}{" "}
+                      {application.recruiterId.lastName}
                     </p>
                   </div>
                   <div className="ml-4 flex flex-col items-end gap-5">
@@ -123,19 +136,21 @@ const SavedJobs = () => {
                       {application.status}
                     </span>
                     {application.status === "saved" && (
-                        <button
-                          onClick={() => handleApplyJob(application._id, application.jobId._id)}
-                          className="px-3 py-1 text-xs bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
-                        >
-                          Apply Now
-                        </button>
-                      )}
                       <button
-                          onClick={() => handleUnsaveJob(application._id)}
-                          className="px-3 py-1 text-xs bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
-                        >
-                          {application.status === "saved" ? "Unsave" : "Remove"}
-                        </button>
+                        onClick={() =>
+                          handleApplyJob(application._id, application.jobId._id)
+                        }
+                        className="px-3 py-1 text-xs bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+                      >
+                        Apply Now
+                      </button>
+                    )}
+                    <button
+                      onClick={() => handleUnsaveJob(application._id)}
+                      className="px-3 py-1 text-xs bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+                    >
+                      {application.status === "saved" ? "Unsave" : "Remove"}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -149,7 +164,8 @@ const SavedJobs = () => {
 
 export default SavedJobs;
 
-{/* <div className="recent my-5 grid gap-2">
+{
+  /* <div className="recent my-5 grid gap-2">
   {[1, 2, 3].map((item) => (
     <div key={item} className="bg-white p-5 flex">
       <div className="txt grid gap-0.5 w-9/10">
@@ -164,4 +180,5 @@ export default SavedJobs;
       </div>
     </div>
   ))}
-</div>; */}
+</div>; */
+}

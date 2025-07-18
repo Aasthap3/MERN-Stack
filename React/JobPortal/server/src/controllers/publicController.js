@@ -4,7 +4,7 @@ import Job from "../models/jobModel.js";
 export const getAllJobs = async (req, res, next) => {
   try {
     const Jobs = await Job.find();
-    res.status(200).json({ message: "ALl Jobs Fetched", data: Jobs });
+    res.status(200).json({ message: "All Jobs Fetched", data: Jobs });
   } catch (error) {
     next(error);
   }

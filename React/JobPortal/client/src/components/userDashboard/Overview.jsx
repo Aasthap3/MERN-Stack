@@ -1,38 +1,113 @@
-import React from "react";
+import axios from "../../config/api";
+import React, { useEffect, useState } from "react";
+import {
+  FiBriefcase,
+  FiSend,
+  FiAward,
+  FiCalendar,
+  FiX,
+  FiMinus,
+  FiBookmark,
+} from "react-icons/fi";
 
 const Overview = () => {
+  const [allJobs, setAllJobs] = useState([]);
+
+  const fetchAllJobs = async () => {
+    try {
+      const res = await axios.get("/user/AllJobs");
+      setAllJobs(res.data.data);
+    } catch (error) {
+      console.log("Error fetching jobs: ", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllJobs();
+  }, []);
+
   return (
     <>
       <div className="m-6">
-        <h1 className="font-mulish text-xl">Overview</h1>
-        <div className="summary flex gap-4 my-5">
-          <div className="bg-white rounded-lg p-5 w-100">
-            <p className="text-[1.1rem]">Total Applications</p>
-            <p className="text-[1.1rem] font-mulish">12</p>
-          </div>
-          <div className="bg-white rounded-lg p-5 w-100">
-            <p className="text-[1.1rem]">Total Applications</p>
-            <p className="text-[1.1rem] font-mulish">12</p>
-          </div>
-          <div className="bg-white rounded-lg p-5 w-100">
-            <p className="text-[1.1rem]">Total Applications</p>
-            <p className="text-[1.1rem] font-mulish">12</p>
-          </div>
-        </div>
-        <h1 className="text-lg font-bold text-gray-700">Recent Applications</h1>
-        <div className="recent my-5 grid gap-2">
-          {[1, 2, 3, 4, 5, 6].map((item) => (
-            <div key={item} className="bg-white p-5 grid gap-0.5">
-              <h3 className="font-medium">Senior Frontend Developer</h3>
-              <span className="text-sm text-gray-500">Google Inc.</span>
-              <span className="text-sm text-gray-500">
-                Applied on: 12 June 2025
-              </span>
-              <span className="text-sm text-indigo-800 bg-indigo-200 px-2 py-1 mt-1 rounded-2xl w-fit">
-                In Review
-              </span>
+        <h2 className="text-3xl font-bold mb-8 text-gray-800">
+          Dashboard Overview
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-6 rounded-xl shadow-lg text-white transform hover:scale-105 transition-transform">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-sm font-medium opacity-90">Total Jobs</h3>
+                <p className="text-3xl font-bold mt-2">{allJobs.length}</p>
+              </div>
+              <FiBriefcase className="text-3xl opacity-80" />
             </div>
-          ))}
+          </div>
+          <div className="bg-gradient-to-r from-green-500 to-green-600 p-6 rounded-xl shadow-lg text-white transform hover:scale-105 transition-transform">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-sm font-medium opacity-90">Applied Jobs</h3>
+                <p className="text-3xl font-bold mt-2">
+                  {allJobs.filter((job) => job.status === "applied").length}
+                </p>
+              </div>
+              <FiSend className="text-3xl opacity-80" />
+            </div>
+          </div>
+          <div className="bg-gradient-to-r from-purple-500 to-purple-600 p-6 rounded-xl shadow-lg text-white transform hover:scale-105 transition-transform">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-sm font-medium opacity-90">Offered</h3>
+                <p className="text-3xl font-bold mt-2">
+                  {allJobs.filter((job) => job.status === "offered").length}
+                </p>
+              </div>
+              <FiAward className="text-3xl opacity-80" />
+            </div>
+          </div>
+          <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 p-6 rounded-xl shadow-lg text-white transform hover:scale-105 transition-transform">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-sm font-medium opacity-90">Interviews</h3>
+                <p className="text-3xl font-bold mt-2">
+                  {allJobs.filter((job) => job.status === "interview").length}
+                </p>
+              </div>
+              <FiCalendar className="text-3xl opacity-80" />
+            </div>
+          </div>
+          <div className="bg-gradient-to-r from-red-500 to-red-600 p-6 rounded-xl shadow-lg text-white transform hover:scale-105 transition-transform">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-sm font-medium opacity-90">Rejected</h3>
+                <p className="text-3xl font-bold mt-2">
+                  {allJobs.filter((job) => job.status === "rejected").length}
+                </p>
+              </div>
+              <FiX className="text-3xl opacity-80" />
+            </div>
+          </div>
+          <div className="bg-gradient-to-r from-gray-500 to-gray-600 p-6 rounded-xl shadow-lg text-white transform hover:scale-105 transition-transform">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-sm font-medium opacity-90">Withdrawn</h3>
+                <p className="text-3xl font-bold mt-2">
+                  {allJobs.filter((job) => job.status === "withdrawn").length}
+                </p>
+              </div>
+              <FiMinus className="text-3xl opacity-80" />
+            </div>
+          </div>
+          <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 p-6 rounded-xl shadow-lg text-white transform hover:scale-105 transition-transform">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-sm font-medium opacity-90">Saved Jobs</h3>
+                <p className="text-3xl font-bold mt-2">
+                  {allJobs.filter((job) => job.status === "saved").length}
+                </p>
+              </div>
+              <FiBookmark className="text-3xl opacity-80" />
+            </div>
+          </div>
         </div>
       </div>
     </>

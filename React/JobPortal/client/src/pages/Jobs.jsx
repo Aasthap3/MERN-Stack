@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IoLocationOutline } from "react-icons/io5";
 import toast from "react-hot-toast";
 import axios from "../config/api";
-import ViewJobModal from "../components/RecruiterDashboard/Modals/ViewJobModal";
+import ViewJobModal from "../components/Jobs/ViewJobModal";
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);

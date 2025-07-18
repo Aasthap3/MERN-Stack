@@ -11,7 +11,7 @@ const ViewJobModal = ({ isOpen, isClose, job }) => {
 
   const handleApply = async () => {
     try {
-      const res = await axios.post(`user/apply/$(job._id)`);
+      const res = await axios.post(`user/apply/${job._id}`);
       toast.success(res.data.message);
     } catch (error) {
       error?.response?.status === 409
@@ -28,7 +28,7 @@ const ViewJobModal = ({ isOpen, isClose, job }) => {
 
   const handleSave = async () => {
     try {
-        const res = await axios.post(`user/save/$(job._id)`);
+        const res = await axios.post(`user/save/${job._id}`);
       toast.success(res.data.message);
     } catch (error) {
         error?.response?.status === 409

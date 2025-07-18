@@ -5,11 +5,11 @@ import toast from "react-hot-toast";
 const Applications = () => {
   const [jobs, setJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
-  const [statusFilter, setStatusFilter] = useState("applied");
+  const [statusFilter, setStatusFilter] = useState("all");
 
   const fetchAppliedJobs = async () => {
     try {
-      const res = await axios.post("/user/allAppliedJobs");
+      const res = await axios.get("/user/allAppliedJobs");
       setJobs(res.data.data);
       setFilteredJobs(res.data.data.filter((job) => job.status === "applied"));
     } catch (error) {
@@ -90,7 +90,7 @@ const Applications = () => {
               All ({jobs.length})
             </button>
             <button
-              onClick={handleStatusFilter("applied")}
+              onClick={()=>handleStatusFilter("applied")}
               className={`px-3 py-1 rounded-full text-sm ${
                 statusFilter === "applied"
                   ? "bg-cyan-900 text-white"
@@ -100,7 +100,7 @@ const Applications = () => {
               Applied ({jobs.filter((job) => job.status === "applied").length})
             </button>
             <button
-              onClick={handleStatusFilter("interview")}
+              onClick={()=>handleStatusFilter("interview")}
               className={`px-3 py-1 rounded-full text-sm ${
                 statusFilter === "interview"
                   ? "bg-cyan-900 text-white"
@@ -111,7 +111,7 @@ const Applications = () => {
               {jobs.filter((job) => job.status === "interview").length})
             </button>
             <button
-              onClick={handleStatusFilter("offered")}
+              onClick={()=>handleStatusFilter("offered")}
               className={`px-3 py-1 rounded-full text-sm ${
                 statusFilter === "offered"
                   ? "bg-cyan-900 text-white"
@@ -121,7 +121,7 @@ const Applications = () => {
               Offered ({jobs.filter((job) => job.status === "offered").length})
             </button>
             <button
-              onClick={handleStatusFilter("rejected")}
+              onClick={()=>handleStatusFilter("rejected")}
               className={`px-3 py-1 rounded-full text-sm ${
                 statusFilter === "rejected"
                   ? "bg-cyan-900 text-white"
@@ -132,7 +132,7 @@ const Applications = () => {
               )
             </button>
             <button
-              onClick={handleStatusFilter("withdrawn")}
+              onClick={()=>handleStatusFilter("withdrawn")}
               className={`px-3 py-1 rounded-full text-sm ${
                 statusFilter === "withdrawn"
                   ? "bg-cyan-900 text-white"
@@ -185,8 +185,8 @@ const Applications = () => {
                     </p>
                     <p className="text-sm text-gray-500 mt-1">
                       <span className="font-medium">Recruiter:</span>
-                      {application.recruiterID.firstName}{" "}
-                      {application.recruiterID.lastName}
+                      {application.recruiterId.firstName}{" "}
+                      {application.recruiterId.lastName}
                     </p>
                   </div>
                   <div className="ml-4 flex flex-col items-end gap-5">
@@ -197,15 +197,15 @@ const Applications = () => {
                     >
                       {application.status}
                     </span>
-                    {application.status === "applied" ||
-                      (application.status === "interview" && (
+                    {(application.status === "applied" ||
+                      application.status === "interview") && (
                         <button
                           onClick={() => handleWithdraw(application._id)}
                           className="px-3 py-1 text-xs bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
                         >
                           Withdraw
                         </button>
-                      ))}
+                      )}
                   </div>
                 </div>
               </div>
@@ -218,24 +218,3 @@ const Applications = () => {
 };
 
 export default Applications;
-
-{
-  /* <div className="recent my-5 grid gap-2">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
-            <div key={item} className="bg-white p-5 flex justify-between">
-              <div className="txt grid gap-0.5">
-                <h3 className="font-medium">Senior Frontend Developer</h3>
-                <span className="text-sm text-gray-500">Google Inc.</span>
-                <span className="text-sm text-gray-500">
-                  Applied on: 12 June 2025
-                </span>
-              </div>
-              <div className="btn">
-                <span className="text-sm text-indigo-800 bg-indigo-200 rounded-2xl px-2.5 py-1.5 mt-1 w-fit hover:bg-indigo-300">
-                  In Review
-                </span>
-              </div>
-            </div>
-          ))}
-        </div> */
-}
