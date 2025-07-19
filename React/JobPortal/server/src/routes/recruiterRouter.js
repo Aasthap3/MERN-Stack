@@ -8,6 +8,6 @@ router.post("/addJob", Protect, isRecruiter, addJob);
 router.get("/viewAllJob", Protect, isRecruiter, viewAllJob);
 router.put("/editJob/:id", Protect, isRecruiter, editJob);
 router.delete("/deleteJob/:id", Protect, isRecruiter, deleteJob);
-router.get("/appliedJobs", Protect, isRecruiter, getAllApplications);
+router.get("/allApplications", Protect, isRecruiter, getAllApplications);
 
 export default router;
