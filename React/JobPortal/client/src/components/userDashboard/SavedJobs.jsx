@@ -18,7 +18,7 @@ const SavedJobs = () => {
     }
   };
 
-  const handleApplyJob = async () => {
+  const handleApplyJob = async (applicationId) => {
     try {
       const res = await axios.patch(
         `/user/applySaved?applicationId=${applicationId}`
@@ -138,7 +138,7 @@ const SavedJobs = () => {
                     {application.status === "saved" && (
                       <button
                         onClick={() =>
-                          handleApplyJob(application._id, application.jobId._id)
+                          handleApplyJob(application._id)
                         }
                         className="px-3 py-1 text-xs bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
                       >

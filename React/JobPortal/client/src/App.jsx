@@ -11,6 +11,7 @@ import {Toaster} from "react-hot-toast";
 import UserDashboard from "./pages/dashboards/UserDashboard";
 import AdminDashboard from "./pages/dashboards/AdminDashboard";
 import RecruiterDashboard from "./pages/dashboards/RecruiterDashboard";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
             <Route path="/userDashboard" element={<UserDashboard/>}/>
             <Route path="/recruiterDashboard" element={<RecruiterDashboard/>}/>
             <Route path="/adminDashboard" element={<AdminDashboard/>}/>
+            <Route path="*" element={<NotFound/>}/>
           </Routes>
         </main>
       </BrowserRouter>
