@@ -72,7 +72,7 @@ const Header = () => {
         </div>
         {user ? (
           <button
-            className="py-2 px-4 flex gap-2 justify-center items-center"
+            className="py-2 px-4 flex gap-2 justify-center items-center border border-cyan-900 text-cyan-900 text-md hover:bg-cyan-950 hover:text-white rounded-md"
             onClick={handleClick}
           >
             <img
@@ -80,6 +80,7 @@ const Header = () => {
               alt=""
               className="h-10 w-10 object-cover rounded-full"
             />
+            <span>{user.firstName}</span>
           </button>
         ) : (
           <div className="flex items-center gap-4">

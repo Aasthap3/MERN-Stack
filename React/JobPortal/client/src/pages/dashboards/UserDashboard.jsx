@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useEffect, useState } from "react";
 import Sidebar from "../../components/userDashboard/Sidebar";
 import Overview from "../../components/userDashboard/Overview";
 import Profile from "../../components/userDashboard/Profile";
@@ -11,18 +11,18 @@ const UserDashboard = () => {
   const [activeTab, setActiveTab] = useState("overview");
 
   const navigate = useNavigate();
-  const { isLogin, isUser } = useAuth();
+  const { isLogin, isRecruiter, isAdmin } = useAuth();
   useEffect(() => {
     if (!isLogin) {
       navigate("/login");
-    } else if (!isUser) {
+    } else if (isRecruiter || isAdmin) {
       navigate("/notFound");
     }
-  }, [isLogin, isUser, navigate]);
+  }, [isLogin, navigate]);
 
   return (
     <>
-      {(isLogin && isUser) && (
+      {(isLogin && !isRecruiter && !isAdmin) && (
       <div className="flex h-[90vh] bg-gray-100 overflow-hidden">
         <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 

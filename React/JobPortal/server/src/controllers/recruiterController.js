@@ -146,7 +146,10 @@ export const getAllApplications = async (req, res, next) => {
       return next(error);
     }
 
-    const appliedJobs = await AppliedJob.find({ recruiterId: recruiter })
+    const appliedJobs = await AppliedJob.find({
+      recruiterId: recruiter,
+      status: { $ne: "saved" },
+    })
       .populate("jobId")
       .populate("userId");
 
@@ -156,6 +159,33 @@ export const getAllApplications = async (req, res, next) => {
       return next(error);
     }
     res.status(200).json({ data: appliedJobs });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const UpdateApplicationStatus = async (req, res, next) => {
+  try {
+    const application = req.params.id;
+    const { status } = req.body;
+
+    if (!application) {
+      const error = new Error("No applications found");
+      error.statusCode = 404;
+      return next(error);
+    }
+
+    if (!status) {
+      const error = new Error("Status is required");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    application.status = status;
+
+    await application.save();
+
+    res.status(200).json({message: "Application Status Updated Successfully"});
   } catch (error) {
     next(error);
   }

@@ -40,7 +40,7 @@ const Applications = () => {
 
   const updateApplicationStatus = async (applicationId, newStatus) => {
     try {
-      await axios.patch(`/recruiter/application/${applicationId}/status`, {
+      await axios.patch(`/recruiter/application/${applicationId}`, {
         status: newStatus,
       });
 
