@@ -22,13 +22,13 @@ export const AuthProvider = (props) => {
 
   useEffect(() => {
     const storedUser = getSafeUser();
-  
+
     if (storedUser) {
       setUser(storedUser);
       setIsLogin(true);
-      setIsAdmin(user.role === "Admin");
-      setIsRecruiter(user.role === "Recruiter");
-      setIsUser(user.role === "User");
+      setIsAdmin(storedUser.role === "Admin");
+      setIsRecruiter(storedUser.role === "Recruiter");
+      setIsUser(storedUser.role === "User");
     } else {
       setUser(null);
       setIsLogin(false);
@@ -36,7 +36,7 @@ export const AuthProvider = (props) => {
       setIsRecruiter(false);
       setIsUser(false);
     }
-  });
+  }, []);
 
   const value = {
     user,
