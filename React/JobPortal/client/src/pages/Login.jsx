@@ -107,6 +107,27 @@ const Login = () => {
               </span>
             </div>
           </div>
+
+          <div className="flex justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                id="rememMe"
+                className="h-4 w-4 accent-cyan-900"
+              />
+              <label htmlFor="rememMe" className="text-sm text-gray-500">
+                Remember Me
+              </label>
+            </div>
+            <div>
+               <Link
+              to={"/changePassword"}
+              className="text-sm text-cyan-900 hover:underline"
+            >
+              Forgot Password?
+            </Link>
+            </div>
+          </div>
           <button
             type="submit"
             className="w-full bg-cyan-900 text-white py-2 rounded hover:bg-cyan-900 transition-colors"
